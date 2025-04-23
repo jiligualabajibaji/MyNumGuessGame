@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guess Game</title>
+    <link rel="stylesheet" href="css/sign.css">
+</head>
+
+<body>
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+        <div class="signin">
+            <form method="post" action="loginservlet">
+                <label for="chk" aria-hidden="true">Sign in</label>
+                <input type="text" name="username" id="needcheck1" placeholder="Username(<16 characters)" required="">
+                <input type="password" name="password" id="needcheck2" placeholder="Password(<16 characters)" required="">
+                <button onclick="return checklen16()" type="submit" value="Sign in">Sign in</button>
+            </form>
+        </div>
+        <div class="signup">
+            <form method="post" action="registerservlet">
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" name="username" id="username" placeholder="Username(<16 characters)" required="">
+                <input type="password" name="password" id="password1" placeholder="Password(<16 characters)" required="">
+                <input type="password" name="password2" id="password2" placeholder="Re-enter password(<16 characters)" required="">
+                <button onclick="return checkPasswordMatch()" type="submit" value="Sign up">Sign up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function checkPasswordMatch() {
+            const username = document.getElementById("username");
+            const password1 = document.getElementById('password1');
+            const password2 = document.getElementById('password2');
+            let isValid = true;
+            if (username.value.length > 16) {
+                alert("username must be less than 16 characters!");
+                isValid = false;
+            } else if (password1.value.length > 16) {
+                alert("password must be less than 16 characters!");
+                isValid = false;
+            } else if (password1.value !== password2.value) {
+                alert("Passwords don't match")
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        function checklen16() {
+            const username = document.getElementById("needcheck1");
+            const password = document.getElementById("needcheck2");
+            let isValid = true;
+            if (username.value.length > 16) {
+                alert("Username must be less than 16 characters!");
+                isValid = false;
+            } else if (password.value.length > 16) {
+                alert("Password must be less than 16 characters!");
+                isValid = false;
+            }
+            return isValid;
+        }
+    </script>
+</body>
+</html>
